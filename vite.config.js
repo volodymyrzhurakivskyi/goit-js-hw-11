@@ -10,40 +10,18 @@ export default defineConfig(({ command }) => {
       [command === 'serve' ? 'global' : '_global']: {},
     },
     // root: 'src',
-    envDir: './',
+    
     build: {
       sourcemap: true,
       rollupOptions: {
-        input: glob.sync('./*.html'),
-        output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              return 'vendor';
-            }
-          },
-          entryFileNames: chunkInfo => {
-            if (chunkInfo.name === 'commonHelpers') {
-              return 'commonHelpers.js';
-            }
-            return '[name].js';
-          },
-          assetFileNames: assetInfo => {
-            if (assetInfo.name && assetInfo.name.endsWith('.html')) {
-              return '[name].[ext]';
-            }
-            return 'assets/[name]-[hash][extname]';
-          },
-        },
+        input: glob.sync('./*.html'), 
       },
-      outDir: 'dist',
-      emptyOutDir: true,
+      outDir: 'dist', 
     },
     plugins: [
       injectHTML(),
-      FullReload(['./**.html']),
-      SortCss({
-        sort: 'mobile-first',
-      }),
+      FullReload(['./src/**/**.js', './*.html']),
+      SortCss({ sort: 'mobile-first' }),
     ],
   };
 });
