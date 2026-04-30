@@ -23,10 +23,5 @@
     "simplelightbox": "^2.14.3",
     "vite-plugin-full-reload": "^1.2.0",
     "vite-plugin-html-inject": "^1.1.2"
-  },  
-  "scripts": {
-  "dev": "vite",
-  "build": "vite build --base=/goit-js-hw-11/",
-  "deploy": "gh-pages -d dist"
-}
+  }
 }
